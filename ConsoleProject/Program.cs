@@ -2,7 +2,6 @@
 using LibraryProject.Pieces;
 using System.Collections;
 using System.Drawing;
-using System.IO.Pipelines;
 using System.Net.NetworkInformation;
 using static System.Console;
 
@@ -16,14 +15,12 @@ do
     WriteLine("Please enter the starting position of the piece: ");
     string startPos = ReadLine();
 
-    // Սկզբնական կոորդինատները պահում ենք Coords struct-ում
     GetCoords(startPos, out int startX, out int startY);
     Coords startCoords = new Coords(startX, startY);
 
     Console.WriteLine("Please enter the final position of the piece: ");
     string finalPos = ReadLine();
 
-    // Վերջնական կոորդինատները պահում ենք Coords struct-ում
     GetCoords(finalPos, out int finalX, out int finalY);
     Coords finalCoords = new Coords(finalX, finalY);
 
