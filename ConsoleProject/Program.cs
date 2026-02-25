@@ -9,16 +9,16 @@ string playGame;
 
 do
 { 
-    WriteLine("Please enter the name of the piece: ");
+    WriteLine("Please enter the name of the piece (ex. King): ");
     string pieceName = ReadLine();
 
-    WriteLine("Please enter the starting position of the piece: ");
+    WriteLine("Please enter the starting position of the piece (ex. A1): ");
     string startPos = ReadLine();
 
     GetCoords(startPos, out int startX, out int startY);
     Coords startCoords = new Coords(startX, startY);
 
-    Console.WriteLine("Please enter the final position of the piece: ");
+    Console.WriteLine("Please enter the final position of the piece (ex. A2): ");
     string finalPos = ReadLine();
 
     GetCoords(finalPos, out int finalX, out int finalY);
@@ -56,6 +56,8 @@ do
     }
 
     CheckMovingStatus(movingStatus);
+
+    WriteLine();
 
     WriteLine("Continue?");
     playGame = ReadLine();
