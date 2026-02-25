@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="../LibraryProject/LibraryProject.csproj" />
+  <Project Path="ConsoleProject.csproj" />
+</Solution>
