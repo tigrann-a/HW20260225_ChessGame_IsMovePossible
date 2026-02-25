@@ -15,23 +15,24 @@ namespace LibraryProject.Pieces
         }
         public bool IsMovePossible(Coords start, Coords final)
         {
-            int coefficentX = Math.Abs(final.X - start.X);
+            int coefficentX = final.X - start.X;
             int coefficentY = Math.Abs(final.Y - start.Y);
 
-            if (color == "White")
+            if (color == "White" && coefficentY == 0)
             {
-                if (start.X == 1 && coefficentX == 1 || coefficentX == 2)
+                if (coefficentX == 1)
                     return true;
-                else if(coefficentX == 1)
+                if (start.X == 1 && coefficentX == 2)
                     return true;
             }
-            if (color == "Black")
+            if (color == "Black" && coefficentY == 0)
             {
-                if (start.X == 7 && coefficentX == -1 || coefficentX == -2)
+                if (coefficentX == -1)
                     return true;
-                else if (coefficentX == -1)
+                if (start.X == 6 && coefficentX == -2)
                     return true;
             }
+
             return false;
         }
 

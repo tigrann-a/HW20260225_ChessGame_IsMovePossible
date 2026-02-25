@@ -6,75 +6,87 @@ using System.IO.Pipelines;
 using System.Net.NetworkInformation;
 using static System.Console;
 
-WriteLine("Please enter name of the piece: ");
-string pieceName = ReadLine();
+string playGame;
 
-WriteLine("Please enter the starting position of the piece: ");
-string startPos = ReadLine();
+do
+{ 
+    WriteLine("Please enter the name of the piece: ");
+    string pieceName = ReadLine();
 
-GetCoords(startPos, out int startX, out int startY);
-Coords startCoords = new Coords(startX, startY);
+    WriteLine("Please enter the starting position of the piece: ");
+    string startPos = ReadLine();
 
-Console.WriteLine("Please enter the final position of the piece: ");
-string finalPos = ReadLine();
+    // Սկզբնական կոորդինատները պահում ենք Coords struct-ում
+    GetCoords(startPos, out int startX, out int startY);
+    Coords startCoords = new Coords(startX, startY);
 
-GetCoords(finalPos, out int finalX, out int finalY);
-Coords finalCoords = new Coords(finalX, finalY);
+    Console.WriteLine("Please enter the final position of the piece: ");
+    string finalPos = ReadLine();
 
-bool movingStatus = false;
+    // Վերջնական կոորդինատները պահում ենք Coords struct-ում
+    GetCoords(finalPos, out int finalX, out int finalY);
+    Coords finalCoords = new Coords(finalX, finalY);
 
-switch (pieceName)
-{
-    case "King":
-        King king = new King();
-        movingStatus = king.IsMovePossible(startCoords, finalCoords);
-        break;
-    case "Queen":
-        Queen queen = new Queen();
-        movingStatus = queen.IsMovePossible(startCoords, finalCoords);
-        break;
-    case "Rook":
-        Rook rook = new Rook();
-        movingStatus = rook.IsMovePossible(startCoords, finalCoords);
-        break;
-    case "Knight":
-        Knight knight = new Knight();
-        movingStatus = knight.IsMovePossible(startCoords, finalCoords);
-        break;
-    case "Bishop":
-        Bishop bishop = new Bishop();
-        movingStatus = bishop.IsMovePossible(startCoords, finalCoords);
-        break;
-    case "Pawn":
-        ChekPawnMovingStatusByColor();
-        break;
-    default:
-        break;
+    bool movingStatus = false;
+
+    switch (pieceName)
+    {
+        case "King":
+            King king = new King();
+            movingStatus = king.IsMovePossible(startCoords, finalCoords);
+            break;
+        case "Queen":
+            Queen queen = new Queen();
+            movingStatus = queen.IsMovePossible(startCoords, finalCoords);
+            break;
+        case "Rook":
+            Rook rook = new Rook();
+            movingStatus = rook.IsMovePossible(startCoords, finalCoords);
+            break;
+        case "Knight":
+            Knight knight = new Knight();
+            movingStatus = knight.IsMovePossible(startCoords, finalCoords);
+            break;
+        case "Bishop":
+            Bishop bishop = new Bishop();
+            movingStatus = bishop.IsMovePossible(startCoords, finalCoords);
+            break;
+        case "Pawn":
+            ChekPawnMovingStatusByColor();
+            break;
+        default:
+            break;
+    }
+
+    CheckMovingStatus(movingStatus);
+
+    WriteLine("Continue?");
+    playGame = ReadLine();
+
+    void GetCoords(string pos, out int x, out int y)
+    {
+        bool isNum = int.TryParse(pos[1].ToString(), out x);
+        x -= 1;
+
+        y = (int)Enum.Parse<Board.Files>(pos[0].ToString());
+    }
+
+    void CheckMovingStatus(bool status)
+    {
+        if (status)
+            WriteLine($"Yes {pieceName} can move to the final position");
+        else
+            WriteLine($"No {pieceName} can\'t move to the final position");
+    }
+
+    void ChekPawnMovingStatusByColor()
+    {
+        WriteLine("Please enter color of selected Pawn: ");
+        string color = ReadLine();
+        Pawn pawn = new Pawn(color);
+        movingStatus = pawn.IsMovePossible(startCoords, finalCoords);
+    }
 }
+while (playGame == "Y");
 
-CheckMovingStatus(movingStatus);
-
-void GetCoords(string pos, out int x, out int y)
-{
-    bool isNum = int.TryParse(pos[1].ToString(), out x);
-    x -= 1;
-
-    y = (int)Enum.Parse<Board.Files>(pos[0].ToString());
-}
-
-void CheckMovingStatus(bool status)
-{
-    if (status)
-        WriteLine($"Yes {pieceName} can move to the final position");
-    else
-        WriteLine($"No {pieceName} can\'t move to the final position");
-}
-
-void ChekPawnMovingStatusByColor()
-{
-    WriteLine("Please enter color of selected Pawn: ");
-    string color = ReadLine();
-    Pawn pawn = new Pawn(color);
-    movingStatus = pawn.IsMovePossible(startCoords, finalCoords);
-}
 
