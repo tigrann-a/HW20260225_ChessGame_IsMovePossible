@@ -60,12 +60,16 @@ do
     WriteLine("Continue?");
     playGame = ReadLine();
 
+    WriteLine();
+
     void GetCoords(string pos, out int x, out int y)
     {
         bool isNum = int.TryParse(pos[1].ToString(), out x);
         x -= 1;
 
         y = (int)Enum.Parse<Board.Files>(pos[0].ToString());
+
+        WriteLine($"X: {x}, Y: {y}");
     }
 
     void CheckMovingStatus(bool status)
