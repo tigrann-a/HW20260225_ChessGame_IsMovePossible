@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace LibraryProject.Pieces;
 
-namespace LibraryProject.Pieces
+public class King
 {
-    public class King
+    public bool IsMovePossible(Coords start, Coords final)
     {
-        public bool IsMovePossible(Coords start, Coords final)
-        {
-            int coefficentX = Math.Abs(final.X - start.X);
-            int coefficentY = Math.Abs(final.Y - start.Y);
+        int coefficentX = Math.Abs(final.X - start.X);
+        int coefficentY = Math.Abs(final.Y - start.Y);
 
-            if (coefficentX <= 1 && coefficentY <= 1 && (coefficentX + coefficentY != 0))
-                return true;
-            else
-                return false;
-        }
+        if (coefficentX <= 1 && coefficentY <= 1 && (coefficentX + coefficentY != 0))
+            return true;
+        else
+            return false;
     }
 }
+

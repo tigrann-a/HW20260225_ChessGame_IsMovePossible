@@ -1,8 +1,5 @@
 ﻿using LibraryProject;
 using LibraryProject.Pieces;
-using System.Collections;
-using System.Drawing;
-using System.Net.NetworkInformation;
 using static System.Console;
 
 string playGame;
@@ -69,7 +66,7 @@ do
         bool isNum = int.TryParse(pos[1].ToString(), out x);
         x -= 1;
 
-        y = (int)Enum.Parse<Board.Files>(pos[0].ToString());
+        y = (int)Enum.Parse<Files>(pos[0].ToString());
 
         WriteLine($"X: {x}, Y: {y}");
     }
@@ -85,7 +82,8 @@ do
     void ChekPawnMovingStatusByColor()
     {
         WriteLine("Please enter color of selected Pawn: ");
-        string color = ReadLine();
+        string colorTxt = ReadLine();
+        bool isValidColor = Enum.TryParse(colorTxt, out PieceColor color);
         Pawn pawn = new Pawn(color);
         movingStatus = pawn.IsMovePossible(startCoords, finalCoords);
     }

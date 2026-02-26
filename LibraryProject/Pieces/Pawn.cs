@@ -7,25 +7,25 @@ namespace LibraryProject.Pieces
 {
     public class Pawn
     {
-        public string color;
+        public PieceColor Color;
 
-        public Pawn(string pieceColor)
+        public Pawn(PieceColor color)
         {
-            color = pieceColor;
+            Color = color;
         }
         public bool IsMovePossible(Coords start, Coords final)
         {
             int coefficentX = final.X - start.X;
             int coefficentY = Math.Abs(final.Y - start.Y);
 
-            if (color == "White" && coefficentY == 0)
+            if (Color == PieceColor.White && coefficentY == 0)
             {
                 if (coefficentX == 1)
                     return true;
                 if (start.X == 1 && coefficentX == 2)
                     return true;
             }
-            if (color == "Black" && coefficentY == 0)
+            if (Color == PieceColor.Black && coefficentY == 0)
             {
                 if (coefficentX == -1)
                     return true;
