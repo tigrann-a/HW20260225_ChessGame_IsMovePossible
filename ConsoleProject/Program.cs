@@ -25,39 +25,7 @@ do
         GetCoords(finalPos, out int finalX, out int finalY);
         Coords finalCoords = new Coords(finalX, finalY);
 
-        bool movingStatus = false;
-
-        switch (name)
-        {
-            case PieceNames.King:
-                King king = new King();
-                movingStatus = king.IsMovePossible(startCoords, finalCoords);
-                break;
-            case PieceNames.Queen:
-                Queen queen = new Queen();
-                movingStatus = queen.IsMovePossible(startCoords, finalCoords);
-                break;
-            case PieceNames.Rook:
-                Rook rook = new Rook();
-                movingStatus = rook.IsMovePossible(startCoords, finalCoords);
-                break;
-            case PieceNames.Knight:
-                Knight knight = new Knight();
-                movingStatus = knight.IsMovePossible(startCoords, finalCoords);
-                break;
-            case PieceNames.Bishop:
-                Bishop bishop = new Bishop();
-                movingStatus = bishop.IsMovePossible(startCoords, finalCoords);
-                break;
-            case PieceNames.Pawn:
-                ChekPawnMovingStatusByColor(movingStatus, startCoords, finalCoords);
-                break;
-            default:
-                Console.WriteLine("The piece you selected does not exist.");
-                break;
-        }
-
-        CheckMovingStatus(movingStatus);
+        CheckThePieceMovingPossibility(name, startCoords, finalCoords);
     }
     else
         Console.WriteLine("You entered an incorrect piece.");
@@ -68,6 +36,13 @@ do
     playGame = ReadLine();
 
     WriteLine();
+
+    string EnterPieceName()
+    {
+        WriteLine("Please enter the name of the piece (ex. King): ");
+        string? pieceNameTxt = ReadLine();
+        return pieceNameTxt;
+    }
 
     void GetCoords(string pos, out int x, out int y)
     {
@@ -95,13 +70,43 @@ do
         Pawn pawn = new Pawn(color);
         canMove = pawn.IsMovePossible(start, final);
     }
+
+    void CheckThePieceMovingPossibility(PieceNames name, Coords start, Coords final)
+    {
+        bool movingStatus = false;
+
+        switch (name)
+        {
+            case PieceNames.King:
+                King king = new King();
+                movingStatus = king.IsMovePossible(start, final);
+                break;
+            case PieceNames.Queen:
+                Queen queen = new Queen();
+                movingStatus = queen.IsMovePossible(start, final);
+                break;
+            case PieceNames.Rook:
+                Rook rook = new Rook();
+                movingStatus = rook.IsMovePossible(start, final);
+                break;
+            case PieceNames.Knight:
+                Knight knight = new Knight();
+                movingStatus = knight.IsMovePossible(start, final);
+                break;
+            case PieceNames.Bishop:
+                Bishop bishop = new Bishop();
+                movingStatus = bishop.IsMovePossible(start, final);
+                break;
+            case PieceNames.Pawn:
+                ChekPawnMovingStatusByColor(movingStatus, start, final);
+                break;
+            default:
+                Console.WriteLine("The piece you selected does not exist.");
+                break;
+        }
+
+        CheckMovingStatus(movingStatus);
+    }
 }
 while (playGame == "Y");
-
-string EnterPieceName()
-{
-    WriteLine("Please enter the name of the piece (ex. King): ");
-    string? pieceNameTxt = ReadLine();
-    return pieceNameTxt;
-}
 
