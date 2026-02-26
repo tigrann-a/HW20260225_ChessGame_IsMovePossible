@@ -5,12 +5,11 @@ using static System.Console;
 string playGame;
 
 do
-{ 
-    WriteLine("Please enter the name of the piece (ex. King): ");
-    string pieceNameTxt = ReadLine();
+{
+    string pieceName = EnterPieceName();
 
-    bool isValidPieceName = Enum.TryParse(pieceNameTxt, out PieceNames name);
-    bool isDefined = Enum.IsDefined(typeof(PieceNames),  pieceNameTxt);
+    bool isValidPieceName = Enum.TryParse(pieceName, out PieceNames name);
+    bool isDefined = Enum.IsDefined(typeof(PieceNames), pieceName);
 
     if (isDefined && isValidPieceName)
     {
@@ -99,4 +98,10 @@ do
 }
 while (playGame == "Y");
 
+string EnterPieceName()
+{
+    WriteLine("Please enter the name of the piece (ex. King): ");
+    string? pieceNameTxt = ReadLine();
+    return pieceNameTxt;
+}
 
