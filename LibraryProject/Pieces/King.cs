@@ -7,6 +7,10 @@ public class King
     {
         this.color = color;
     }
+    public King(Bishop bishop)
+    {
+        color = bishop.color;
+    }
     public bool IsMovePossible(Coords start, Coords final)
     {
         int coefficentX = Math.Abs(final.x - start.x);

@@ -8,19 +8,24 @@ public class Pawn
     {
         this.color = color;
     }
+
+    public Pawn(Bishop bishop)
+    {
+        color = bishop.color;
+    }
     public bool IsMovePossible(Coords start, Coords final)
     {
         int coefficentX = final.x - start.x;
         int coefficentY = Math.Abs(final.y - start.y);
 
-        if (this.color == PieceColor.White && coefficentY == 0)
+        if (color == PieceColor.White && coefficentY == 0)
         {
             if (coefficentX == 1)
                 return true;
             if (start.x == 1 && coefficentX == 2)
                 return true;
         }
-        if (this.color == PieceColor.Black && coefficentY == 0)
+        if (color == PieceColor.Black && coefficentY == 0)
         {
             if (coefficentX == -1)
                 return true;
