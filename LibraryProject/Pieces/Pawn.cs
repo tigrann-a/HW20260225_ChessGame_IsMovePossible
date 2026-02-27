@@ -2,29 +2,29 @@
 
 public class Pawn
 {
-    public PieceColor Color;
+    public PieceColor color;
 
     public Pawn(PieceColor color)
     {
-        Color = color;
+        this.color = color;
     }
     public bool IsMovePossible(Coords start, Coords final)
     {
-        int coefficentX = final.X - start.X;
-        int coefficentY = Math.Abs(final.Y - start.Y);
+        int coefficentX = final.x - start.x;
+        int coefficentY = Math.Abs(final.y - start.y);
 
-        if (Color == PieceColor.White && coefficentY == 0)
+        if (this.color == PieceColor.White && coefficentY == 0)
         {
             if (coefficentX == 1)
                 return true;
-            if (start.X == 1 && coefficentX == 2)
+            if (start.x == 1 && coefficentX == 2)
                 return true;
         }
-        if (Color == PieceColor.Black && coefficentY == 0)
+        if (this.color == PieceColor.Black && coefficentY == 0)
         {
             if (coefficentX == -1)
                 return true;
-            if (start.X == 6 && coefficentX == -2)
+            if (start.x == 6 && coefficentX == -2)
                 return true;
         }
 

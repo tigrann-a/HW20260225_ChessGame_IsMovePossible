@@ -2,12 +2,12 @@
 
 public struct Coords
 {
-    public int X;
-    public int Y;
+    public byte x;
+    public byte y;
 
-    public Coords(int x, int y)
+    public Coords(byte x, byte y)
     {
-        X = x;
-        Y = y;
+        this.x = x;
+        this.y = y;
     }
 }

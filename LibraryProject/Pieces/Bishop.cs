@@ -2,10 +2,15 @@
 
 public class Bishop
 {
+    public PieceColor color;
+    public Bishop(PieceColor color)
+    {
+        this.color = color;
+    }
     public bool IsMovePossible(Coords start, Coords final)
     {
-        int coefficentX = Math.Abs(final.X - start.X);
-        int coefficentY = Math.Abs(final.Y - start.Y);
+        int coefficentX = Math.Abs(final.x - start.x);
+        int coefficentY = Math.Abs(final.y - start.y);
         if (coefficentX == coefficentY)
             return true;
         else

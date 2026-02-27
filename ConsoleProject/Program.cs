@@ -13,19 +13,24 @@ do
 
     if (isDefined && isValidPieceName)
     {
+        WriteLine("Please enter color of the piece: ");
+        string colorTxt = ReadLine();
+
+        bool isValidColor = Enum.TryParse(colorTxt, out PieceColor color);
+
         WriteLine("Please enter the starting position of the piece (ex. A1): ");
         string startPos = ReadLine();
 
-        GetCoords(startPos, out int startX, out int startY);
+        GetCoords(startPos, out byte startX, out byte startY);
         Coords startCoords = new Coords(startX, startY);
 
         WriteLine("Please enter the final position of the piece (ex. A2): ");
         string finalPos = ReadLine();
 
-        GetCoords(finalPos, out int finalX, out int finalY);
+        GetCoords(finalPos, out byte finalX, out byte finalY);
         Coords finalCoords = new Coords(finalX, finalY);
 
-        CheckThePieceMovingPossibility(name, startCoords, finalCoords);
+        CheckThePieceMovingPossibility(name, color, startCoords, finalCoords);
     }
     else
         Console.WriteLine("You entered an incorrect piece.");
@@ -44,12 +49,12 @@ do
         return pieceNameTxt;
     }
 
-    void GetCoords(string pos, out int x, out int y)
+    void GetCoords(string pos, out byte x, out byte y)
     {
-        bool isNum = int.TryParse(pos[1].ToString(), out x);
+        bool isNum = byte.TryParse(pos[1].ToString(), out x);
         x -= 1;
 
-        y = (int)Enum.Parse<Files>(pos[0].ToString());
+        y = (byte)Enum.Parse<Files>(pos[0].ToString());
 
         WriteLine($"X: {x}, Y: {y}");
     }
@@ -62,43 +67,35 @@ do
             WriteLine($"No {name} can\'t move to the final position");
     }
 
-    void ChekPawnMovingStatusByColor(bool canMove, Coords start, Coords final)
-    {
-        WriteLine("Please enter color of selected Pawn: ");
-        string colorTxt = ReadLine();
-        bool isValidColor = Enum.TryParse(colorTxt, out PieceColor color);
-        Pawn pawn = new Pawn(color);
-        canMove = pawn.IsMovePossible(start, final);
-    }
-
-    void CheckThePieceMovingPossibility(PieceNames name, Coords start, Coords final)
+    void CheckThePieceMovingPossibility(PieceNames name, PieceColor color, Coords start, Coords final)
     {
         bool movingStatus = false;
 
         switch (name)
         {
             case PieceNames.King:
-                King king = new King();
+                King king = new King(color);
                 movingStatus = king.IsMovePossible(start, final);
                 break;
             case PieceNames.Queen:
-                Queen queen = new Queen();
+                Queen queen = new Queen(color);
                 movingStatus = queen.IsMovePossible(start, final);
                 break;
             case PieceNames.Rook:
-                Rook rook = new Rook();
+                Rook rook = new Rook(color);
                 movingStatus = rook.IsMovePossible(start, final);
                 break;
             case PieceNames.Knight:
-                Knight knight = new Knight();
+                Knight knight = new Knight(color);
                 movingStatus = knight.IsMovePossible(start, final);
                 break;
             case PieceNames.Bishop:
-                Bishop bishop = new Bishop();
+                Bishop bishop = new Bishop(color);
                 movingStatus = bishop.IsMovePossible(start, final);
                 break;
             case PieceNames.Pawn:
-                ChekPawnMovingStatusByColor(movingStatus, start, final);
+                Pawn pawn = new Pawn(color);
+                movingStatus = pawn.IsMovePossible(start, final);
                 break;
             default:
                 Console.WriteLine("The piece you selected does not exist.");
