@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="../LibraryProject/LibraryProject.csproj" />
+  <Project Path="../RookConsole/RookConsole.csproj" Id="fd166bff-3fd7-48be-ba61-a2fe8f021106" />
   <Project Path="ConsoleProject.csproj" />
 </Solution>

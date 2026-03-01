@@ -3,10 +3,14 @@
 public class King
 {
     public PieceColor color;
+
+    // Parameterized constructor
     public King(PieceColor color)
     {
         this.color = color;
     }
+
+    // Copy cosntructor
     public King(Bishop bishop)
     {
         color = bishop.color;
