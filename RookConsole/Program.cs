@@ -6,8 +6,14 @@ using LibraryProject.Pieces;
 WriteLine("Please enter coordinates of White Rook: ");
 string whiteRookPosTxt = ReadLine();
 
+GetCoords(whiteRookPosTxt, out byte whiteRookX, out byte whiteRookY);
+Coords whiteRookPos = new Coords(whiteRookX, whiteRookY);
+
 WriteLine("Please enter coordinates of Black Rook: ");
 string  blackRookPosTxt = ReadLine();
+
+GetCoords(blackRookPosTxt, out byte blackRookX, out byte blackRookY);
+Coords blackRookPos = new Coords(blackRookX, blackRookY);
 
 void GetCoords(string pos, out byte x, out byte y)
 {
