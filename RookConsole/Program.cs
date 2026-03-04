@@ -26,10 +26,18 @@ string? blackRookPosTxt = ReadLine();
 userService.GetCoords(blackRookPosTxt, out byte blackRookX, out byte blackRookY);
 Coords blackRookPos = new Coords(blackRookX, blackRookY);
 
-Rook rook1 = new Rook(whiteRookPos);
-Rook rook2 = new Rook(blackRookPos);
+WriteLine("Please enther other piece coordinates: ");
+string? otherPiecePosTxt = ReadLine();
 
-bool isCapturePossible = rook1.CaptureIsPossible(rook1, rook2);
+userService.GetCoords(otherPiecePosTxt, out byte otherPieceX, out byte otherPieceY);
+Coords otherPiecePos = new Coords(otherPieceX, otherPieceY);
 
-userService.PrintCapturePossibilityMsg(isCapturePossible);
+Rook rook = new Rook(whiteRookPos);
+//Rook rook2 = new Rook(blackRookPos);
+
+//bool isCapturePossible = rook1.CaptureIsPossible(whiteRookPos, blackRookPos);
+bool isCapturePossible1 = rook.IsMovePossible1(whiteRookPos, blackRookPos, otherPiecePos);
+
+//userService.PrintCapturePossibilityMsg(isCapturePossible);
+userService.PrintCapturePossibilityMsg(isCapturePossible1);
 

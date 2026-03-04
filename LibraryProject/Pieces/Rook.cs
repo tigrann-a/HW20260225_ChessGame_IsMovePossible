@@ -4,16 +4,16 @@ namespace LibraryProject.Pieces;
 
 public class Rook
 {
-    public byte x;
-    public byte y;
+    public Coords coord;
+
     public PieceColor color;
 
     public Rook(){}
     public Rook(Coords position)
     {
         //this.color = color;
-        x = position.x;
-        y = position.y;
+        coord.x = position.x;
+        coord.y = position.y;
     }
     public Rook(Rook rook)
     {
@@ -30,7 +30,27 @@ public class Rook
             return false;
     }
 
-    public bool CaptureIsPossible(Rook whiteRook, Rook blackRook)
+    public bool IsMovePossible1(Coords start, Coords final, Coords other)
+    {
+        int coefficentX = Math.Abs(final.x - start.x);
+        int coefficentY = Math.Abs(final.y - start.y);
+        int coefficentOtherX = Math.Abs(other.x - final.x);
+        int coefficentOtherY = Math.Abs(other.y - final.y);
+
+        if (coefficentX == 0 || coefficentY == 0)
+        {
+            if((coefficentOtherX == 0 && (other.x > start.x && other.x < final.x))
+                || (coefficentOtherY == 0 && (other.y > start.y && other.y < final.y)) )
+            {
+                return false;
+            }
+        }
+
+        return true;
+        
+    }
+
+    public bool CaptureIsPossible(Coords whiteRook, Coords blackRook)
     {
         int coefficentX = Math.Abs(whiteRook.x - blackRook.x);
         int coefficentY = Math.Abs(whiteRook.y - blackRook.y);
