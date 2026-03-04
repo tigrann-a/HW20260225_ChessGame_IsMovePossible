@@ -2,6 +2,8 @@
 
 public class Bishop
 {
+
+    public Coords coord;
     public PieceColor color;
 
     // Parameterized constructor
@@ -9,7 +11,12 @@ public class Bishop
     {
         this.color = color;
     }
-
+    public Bishop(Coords position)
+    {
+        //this.color = color;
+        coord.x = position.x;
+        coord.y = position.y;
+    }
     // Copy constructor
     public Bishop(Bishop bishop)
     {

@@ -35,9 +35,9 @@ Coords otherPiecePos = new Coords(otherPieceX, otherPieceY);
 Rook rook = new Rook(whiteRookPos);
 //Rook rook2 = new Rook(blackRookPos);
 
-//bool isCapturePossible = rook1.CaptureIsPossible(whiteRookPos, blackRookPos);
-bool isCapturePossible1 = rook.IsMovePossible1(whiteRookPos, blackRookPos, otherPiecePos);
+bool isCapturePossible = rook.CaptureIsPossible(whiteRookPos, blackRookPos);
+//bool isCapturePossible1 = rook.IsMovePossible1(whiteRookPos, blackRookPos, otherPiecePos);
 
-//userService.PrintCapturePossibilityMsg(isCapturePossible);
-userService.PrintCapturePossibilityMsg(isCapturePossible1);
+userService.PrintCapturePossibilityMsg(isCapturePossible);
+//userService.PrintCapturePossibilityMsg(isCapturePossible1);
 

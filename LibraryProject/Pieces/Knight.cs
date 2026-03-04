@@ -2,12 +2,19 @@
 
 public class Knight
 {
+    public Coords coord;
     public PieceColor color;
     public Knight(PieceColor color)
     {
         this.color = color;
     }
 
+    public Knight(Coords position)
+    {
+        //this.color = color;
+        coord.x = position.x;
+        coord.y = position.y;
+    }
     public Knight(Bishop bishop)
     {
         color = bishop.color;

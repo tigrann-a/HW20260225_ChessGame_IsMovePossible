@@ -2,12 +2,20 @@
 
 public class King
 {
+    public Coords coord;
     public PieceColor color;
 
     // Parameterized constructor
     public King(PieceColor color)
     {
         this.color = color;
+    }
+
+    public King(Coords position)
+    {
+        //this.color = color;
+        coord.x = position.x;
+        coord.y = position.y;
     }
 
     // Copy cosntructor

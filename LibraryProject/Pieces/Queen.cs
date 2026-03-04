@@ -2,10 +2,18 @@
 
 public class Queen
 {
+    public Coords coord;
     public PieceColor color;
     public Queen(PieceColor color)
     {
         this.color = color;
+    }
+
+    public Queen(Coords position)
+    {
+        //this.color = color;
+        coord.x = position.x;
+        coord.y = position.y;
     }
 
     public Queen(Bishop bishop)

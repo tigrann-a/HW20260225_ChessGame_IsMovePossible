@@ -2,11 +2,19 @@
 
 public class Pawn
 {
+    public Coords coord;
     public PieceColor color;
 
     public Pawn(PieceColor color)
     {
         this.color = color;
+    }
+
+    public Pawn(Coords position)
+    {
+        //this.color = color;
+        coord.x = position.x;
+        coord.y = position.y;
     }
 
     public Pawn(Bishop bishop)
