@@ -1,26 +1,35 @@
-﻿using static System.Console;
-using static System.Net.WebRequestMethods;
-using LibraryProject;
+﻿using LibraryProject;
 using LibraryProject.Pieces;
+using LibraryProject.Services;
+using static System.Console;
+
+UserService userService = new UserService();
+//WriteLine("Please enter color of selected rook: ");
+//string color1 = Console.ReadLine();
+
+//bool isValidColor1 = Enum.TryParse(color1, out PieceColor firstColor);
 
 WriteLine("Please enter coordinates of White Rook: ");
-string whiteRookPosTxt = ReadLine();
+string? whiteRookPosTxt = ReadLine();
 
-GetCoords(whiteRookPosTxt, out byte whiteRookX, out byte whiteRookY);
+userService.GetCoords(whiteRookPosTxt, out byte whiteRookX, out byte whiteRookY);
 Coords whiteRookPos = new Coords(whiteRookX, whiteRookY);
 
-WriteLine("Please enter coordinates of Black Rook: ");
-string  blackRookPosTxt = ReadLine();
+//WriteLine("Please enter color of selected rook: ");
+//string color2 = Console.ReadLine();
 
-GetCoords(blackRookPosTxt, out byte blackRookX, out byte blackRookY);
+//bool isValidColor2 = Enum.TryParse(color2, out PieceColor secondColor);
+
+WriteLine("Please enter coordinates of Black Rook: ");
+string? blackRookPosTxt = ReadLine();
+
+userService.GetCoords(blackRookPosTxt, out byte blackRookX, out byte blackRookY);
 Coords blackRookPos = new Coords(blackRookX, blackRookY);
 
-void GetCoords(string pos, out byte x, out byte y)
-{
-    bool isNum = byte.TryParse(pos[1].ToString(), out x);
-    x -= 1;
+Rook rook1 = new Rook(whiteRookPos);
+Rook rook2 = new Rook(blackRookPos);
 
-    y = (byte)Enum.Parse<Files>(pos[0].ToString());
+bool isCapturePossible = rook1.CaptureIsPossible(rook1, rook2);
 
-    WriteLine($"X: {x}, Y: {y}");
-}
+userService.PrintCapturePossibilityMsg(isCapturePossible);
+
